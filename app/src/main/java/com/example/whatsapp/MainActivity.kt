@@ -22,5 +22,4 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.setupWithViewPager(binding.viewPager)
 
     }
-
 }

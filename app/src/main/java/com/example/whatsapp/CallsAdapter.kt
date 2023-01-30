@@ -10,39 +10,38 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
 
-class StatusAdapter(context: Context?, person: Array<String>, time: Array<String>, img: IntArray) :
-    RecyclerView.Adapter<StatusAdapter.DataHolder>() {
+class CallsAdapter(context: Context?, person: Array<String>, time: Array<String>, img: IntArray) : RecyclerView.Adapter<CallsAdapter.DataHolder>() {
 
     var context = context
     var person = person
     var time = time
     var img = img
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataHolder {
 
-        var view =LayoutInflater.from(context).inflate(R.layout.status_recycle_layout, parent, false)
+
+        var view =LayoutInflater.from(context).inflate(R.layout.calls_recycle_layout, parent, false)
 
         return DataHolder(view)
     }
 
     override fun getItemCount(): Int {
 
-        return person.size
+        return  person.size
     }
 
     override fun onBindViewHolder(holder: DataHolder, position: Int) {
 
-        holder.status_user_name.setText(person.get(position))
-        holder.status_time.setText(time.get(position))
-        context?.let { Glide.with(it).load(img[position]).into(holder.img_status)
-        }
-
+        holder.UserCall.setText(person.get(position))
+        holder.time.setText(time.get(position))
+        context?.let { Glide.with(it).load(img.get(position)).into(holder.imgCall) }
     }
 
     class DataHolder(itemView: View) : ViewHolder(itemView) {
 
-        var img_status = itemView.findViewById<ImageView>(R.id.imgStatus)
-        var status_user_name = itemView.findViewById<TextView>(R.id.status_user_text)
-        var status_time = itemView.findViewById<TextView>(R.id.Status_recycle_text)
+        var imgCall = itemView.findViewById<ImageView>(R.id.imgCall)
+        var UserCall = itemView.findViewById<TextView>(R.id.calls_user_text)
+        var time = itemView.findViewById<TextView>(R.id.calls_recycle_text)
     }
 }

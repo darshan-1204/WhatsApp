@@ -1,24 +1,26 @@
 package com.example.whatsapp.Fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.whatsapp.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.whatsapp.CallsAdapter
+import com.example.whatsapp.R.drawable.*
+import com.example.whatsapp.databinding.FragmentCallsBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CallsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class CallsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
+    lateinit var binding: FragmentCallsBinding
+
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -30,12 +32,85 @@ class CallsFragment : Fragment() {
         }
     }
 
+    var person = arrayOf(
+        "Vaibhav",
+        "Paras",
+        "Jalo",
+        "Darshan",
+        "Rahi",
+        "Akhtar",
+        "Bhavesh",
+        "Romit",
+        "Ravi",
+        "Vaibhav",
+        "Paras",
+        "Jalo",
+        "Darshan",
+        "Rahi",
+        "Akhtar",
+        "Bhavesh",
+        "Romit",
+        "Ravi"
+    )
+    var time = arrayOf(
+        "15 minutes ago",
+        "27 minutes ago",
+        "43 minutes ago",
+        "54 minutes ago",
+        "Today, 8:40 AM",
+        "Today, 8:03 AM",
+        "Today, 7:17 AM ",
+        "Today, 12:14 AM",
+        "Yesterday, 11:22 PM",
+        "Yesterday, 10:08 PM",
+        "Yesterday, 9:09 PM",
+        "Yesterday, 9:06 PM",
+        "Yesterday, 8:50 PM",
+        "Yesterday, 7:34 PM",
+        "Yesterday, 1:16 PM",
+        "Yesterday, 12:52 PM",
+        "Yesterday, 12:24 PM",
+        "Yesterday, 10:51 AM"
+    )
+    var img = intArrayOf(
+        user1,
+        user2,
+        user3,
+        user4,
+        user5,
+        user6,
+        user1,
+        user2,
+        user3,
+        user1,
+        user2,
+        user3,
+        user4,
+        user5,
+        user6,
+        user1,
+        user2,
+        user3
+    )
+
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calls, container, false)
+
+        binding = FragmentCallsBinding.inflate(inflater, container, false)
+
+
+        var adapter = CallsAdapter(context, person, time, img)
+        binding.recyclerCalls.adapter = adapter
+
+        var layoutManager: LinearLayoutManager = LinearLayoutManager(context)
+        binding.recyclerCalls.layoutManager = layoutManager
+
+        return binding.root
     }
 
     companion object {
